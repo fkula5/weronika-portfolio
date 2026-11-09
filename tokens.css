@@ -12,7 +12,7 @@
   --color-ink: #1C2B4A; --color-ink-2: #34425F; --color-muted: #4F5A74;
   --color-rule: rgba(28, 43, 74, 0.22);
   --color-field: #6B1F2E; --color-field-2: #1C2B4A; --color-on-field: #FAF5EA; --color-on-field-rule: rgba(250, 245, 234, 0.28); --color-field-hover: rgba(250, 245, 234, 0.08);
-  --color-butter: #F6E7A6; --color-on-butter: #1C2B4A; --color-butter-focus: #F6E7A6;
+  --color-court-in: #6B1F2E; --color-butter: #F6E7A6; --color-on-butter: #1C2B4A; --color-butter-focus: #F6E7A6;
   --color-accent: #6B1F2E; --color-accent-ink: #FAF5EA; --color-focus: #6B1F2E;
   --font-display: "Fraunces", Georgia, serif; --font-body: "DM Serif Display", Georgia, serif; --font-outlier: var(--font-body);
   --radius-card: 4px; --radius-arch: 999px 999px 4px 4px; --radius-panel: 24px; --display-weight: 600; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;

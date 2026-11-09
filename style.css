@@ -1,8 +1,10 @@
 /* Hallmark · shape: Manifesto, from draw 6e2b3d · genre: editorial · theme: brand · redesign: full · job: hire
- * paper: #EADFCB · accent: #6B1F2E · display: Fraunces · body: DM Serif Display · hero: Ledge · nav: floating pill, solid cream · footer: mast (swap: index columns need a sitemap the page lacks) · signature: the headline at poster scale on a bordo field
+ * paper: #EADFCB · accent: #6B1F2E · display: Fraunces · body: DM Serif Display · hero: Ledge · nav: floating pill, solid cream, on the left edge so the hoop stays clear · footer: mast (swap: index columns need a sitemap the page lacks) · signature: a basketball court drawn line by line beside the headline on a bordo field
  * axes: light/high-contrast-serif/warm · posture: full-palette (field bordo, field navy, butter highlight, navy ink) · contrast: pass · fold: pass · imagery: none from the library, the user's logo holds the portrait slot · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H5 E4 S3 R5 V4 · weakest: S, no photographs or real numbers yet; the three subjects set huge carry the specificity until the owner's portrait lands */
 /* Hallmark · hero-review: in-thread · 1 finding · 1 resolved (head grown to fill the width) · finish-review: in-thread · 2 findings · 2 resolved (row hairlines back on the grid, spaces between heading lines) · gap: no photographs yet */
+/* Hallmark · waive 80 · class court-diagram, a labelled diagram of a real basketball court · the owner picked this court drawing and Weronika referees on this floor */
+/* Hallmark · waive 71 · portfolio rows are a table, each h3 heads a row and sits beside its cells · the Portfolio and Certyfikaty index rows keep titles level with their client and description columns */
 /* Hallmark · dismissed 23 · bordo headings are the owner's brand rule, the palette names bordo as the colour for napisy */
 @import url("./tokens.css");
 @import url("./base.css");
@@ -19,7 +21,7 @@ h1, h2 { font-optical-sizing: auto; }
 .on-field ::selection, .on-navy ::selection { background: var(--color-butter); color: var(--color-on-butter); }
 
 /* floating pill */
-.bar { position: fixed; z-index: var(--z-sticky-nav); inset-inline: 0; top: calc(env(safe-area-inset-top, 0px) + var(--space-md)); display: flex; justify-content: center; padding-inline: var(--space-md); pointer-events: none; }
+.bar { position: fixed; z-index: var(--z-sticky-nav); inset-inline: 0; top: calc(env(safe-area-inset-top, 0px) + var(--space-md)); display: flex; justify-content: flex-start; padding-inline: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter))); pointer-events: none; }
 .pill { pointer-events: auto; display: flex; align-items: center; gap: var(--space-xl); min-height: 64px; padding: var(--space-xs) var(--space-lg) var(--space-xs) var(--space-xl); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: var(--color-paper-2); color: var(--color-ink); }
 .logo { display: inline-grid; justify-items: center; font-family: var(--font-body); font-size: var(--text-lg); line-height: 1; text-decoration: none; white-space: nowrap; color: var(--color-accent); }
 .logo small { font-size: var(--text-sm); line-height: 1.1; color: var(--color-ink-2); }
@@ -33,8 +35,19 @@ h1, h2 { font-optical-sizing: auto; }
 .menu:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
 /* hero: ledge */
-.hero { display: flex; flex-direction: column; justify-content: flex-end; min-height: 100dvh; padding-block: var(--space-4xl) calc(env(safe-area-inset-bottom, 0px) + var(--space-xl)); }
-.hero h1 { max-width: none; font-size: clamp(3.5rem, 17vw, 15.5rem); line-height: 0.96; letter-spacing: -0.03em; }
+.hero { position: relative; overflow: clip; display: flex; flex-direction: column; justify-content: flex-end; min-height: 100dvh; padding-block: var(--space-4xl) calc(env(safe-area-inset-bottom, 0px) + var(--space-xl)); }
+.hero .container { position: relative; z-index: var(--z-raised); }
+.court-diagram { position: absolute; z-index: var(--z-base); top: 0; right: calc((100% - min(100%, var(--container))) / 2 - var(--space-xl)); width: min(47vw, 680px); height: auto; pointer-events: none; }
+.court-diagram * { fill: none; stroke: var(--color-on-field); stroke-width: 2; stroke-linecap: round; }
+.court-diagram .court-key { fill: var(--color-butter); stroke: var(--color-butter); }
+.court-diagram .court-in { stroke: var(--color-court-in); }
+.court-diagram .court-dash { stroke-dasharray: 6 9; }
+.court-diagram .draw { stroke-dasharray: 1; animation: court-draw 2.2s var(--ease-in-out) 0.15s both; }
+.court-diagram .court-key { animation: court-fade 0.9s var(--ease-out) 1.2s both; }
+@keyframes court-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes court-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .court-diagram .draw, .court-diagram .court-key { animation: none; } }
+.hero h1 { max-width: none; font-size: clamp(3.5rem, 13.5vw, 12.5rem); line-height: 0.96; letter-spacing: -0.03em; }
 .hero h1 span { display: block; animation: settle 0.6s var(--ease-out) both; animation-delay: calc(var(--i) * 80ms); }
 @keyframes settle { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hero h1 span { animation: none; } }
@@ -58,15 +71,20 @@ h1, h2 { font-optical-sizing: auto; }
 .about__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); align-items: center; }
 .portrait { grid-column: 1 / span 5; margin: 0; aspect-ratio: 4 / 5; border-radius: var(--radius-arch); background: var(--color-field); }
 .about__text { grid-column: 7 / -1; min-width: 0; }
-.about h2 { color: var(--color-accent); font-size: var(--text-display); margin-bottom: var(--space-xl); }
+.about h2 { color: var(--color-accent); font-size: var(--text-display); margin-bottom: var(--space-md); }
 .about p + p { margin-top: var(--space-md); }
 .skills { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: var(--space-xl) 0 0; padding: 0; list-style: none; }
 .skills li { padding: var(--space-2xs) var(--space-md); border-radius: var(--radius-pill); background: var(--color-butter); color: var(--color-on-butter); font-size: var(--text-sm); }
 
+/* section heads: the half-line with the centre circle */
+.about h2, .work h2, .certs h2, .press h2, .pubs h2 { max-width: none; }
+.about h2::after, .work h2::after, .certs h2::after, .press h2::after, .pubs h2::after { content: ""; display: block; height: var(--space-xl); margin-top: var(--space-md); border-top: 2px solid currentColor; background: radial-gradient(circle at var(--space-xl) 0, transparent calc(var(--space-xl) - 2.5px), currentColor calc(var(--space-xl) - 2px), currentColor calc(var(--space-xl) - 0.5px), transparent var(--space-xl)) no-repeat; background-size: calc(2 * var(--space-xl)) var(--space-xl); }
+
 /* portfolio: index */
 .work { padding-block: var(--section-gap-s); background: var(--color-paper-2); }
 .work h2, .certs h2, .press h2 { color: var(--color-accent); font-size: var(--text-display); }
-.rows { margin-top: var(--space-2xl); border-bottom: 1px solid var(--color-rule); }
+.row:first-child, .certs__list li:first-child { border-top: 0; }
+.rows { border-bottom: 1px solid var(--color-rule); }
 .row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); align-items: baseline; position: relative; isolation: isolate; padding-block: var(--space-xl); border-top: 1px solid var(--color-rule); text-decoration: none; transition: color var(--dur-short) var(--ease-out); }
 .row::before, .pub::before { content: ""; position: absolute; inset: 0 calc(-1 * var(--space-md)); z-index: -1; border-radius: var(--radius-card); opacity: 0; transition: opacity var(--dur-short) var(--ease-out); }
 .row::before { background: var(--color-butter); }
@@ -92,7 +110,7 @@ h1, h2 { font-optical-sizing: auto; }
 
 /* press: a lead tile and two beside it */
 .press { padding-block: var(--section-gap) var(--section-gap-s); }
-.tiles { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(240px, auto); gap: var(--gap-columns); margin-top: var(--space-2xl); }
+.tiles { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(240px, auto); gap: var(--gap-columns); margin-top: var(--space-lg); }
 .tile { display: flex; flex-direction: column; grid-column: span 5; padding: var(--space-xl); border-radius: var(--radius-card); background: var(--color-paper-2); text-decoration: none; transition: opacity var(--dur-micro) var(--ease-out); }
 .tile--lead { grid-column: 1 / span 7; grid-row: span 2; background: var(--color-butter); color: var(--color-on-butter); }
 .tile--lead h3 { font-size: var(--text-section); }
@@ -104,7 +122,7 @@ h1, h2 { font-optical-sizing: auto; }
 
 /* certificates: table */
 .certs { padding-block: var(--section-gap-s) var(--section-gap); }
-.certs__list { margin: var(--space-2xl) 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--color-rule); }
+.certs__list { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--color-rule); }
 .certs__list li { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); border-top: 1px solid var(--color-rule); }
 .certs__list h3 { grid-column: 3 / span 4; grid-row: 1; font-size: var(--text-xl); }
 .certs__when { grid-column: 1 / span 2; grid-row: 1; font-family: var(--font-display); font-size: var(--text-xl); font-variant-numeric: tabular-nums; color: var(--color-accent); }
@@ -135,6 +153,9 @@ h1, h2 { font-optical-sizing: auto; }
   .js .pill.is-open nav { display: flex; }
   .pill nav a { font-size: var(--text-md); }
   .hero { min-height: 100svh; }
+  .hero h1 { font-size: clamp(3.5rem, 17vw, 9rem); }
+  .court-diagram { top: var(--space-3xl); right: calc(-1 * var(--space-xl)); width: min(82vw, 30rem); }
+  .court-diagram * { stroke-width: 3; }
   .hero__foot .lead, .actions { grid-column: 1 / -1; }
   .actions { justify-content: flex-start; }
   .trio h2 span { padding-inline-start: calc(var(--i) * var(--space-lg)); }
