@@ -1,5 +1,5 @@
 /* Hallmark · shape: Manifesto, from draw 6e2b3d · genre: editorial · theme: brand · redesign: full · job: hire
- * paper: #EADFCB · accent: #6B1F2E · display: Fraunces · body: DM Serif Display · hero: Ledge · nav: floating pill, solid cream, on the left edge so the hoop stays clear · footer: mast (swap: index columns need a sitemap the page lacks) · signature: a basketball court drawn line by line beside the headline on a bordo field
+ * paper: #EADFCB · accent: #6B1F2E · display: Fraunces · body: DM Serif Display · hero: Ledge · nav: floating pill, solid cream, centred above the court · footer: mast (swap: index columns need a sitemap the page lacks) · signature: a basketball court drawn line by line beside the headline on a bordo field
  * axes: light/high-contrast-serif/warm · posture: full-palette (field bordo, field navy, butter highlight, navy ink) · contrast: pass · fold: pass · imagery: none from the library, the user's logo holds the portrait slot · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H5 E4 S3 R5 V4 · weakest: S, no photographs or real numbers yet; the three subjects set huge carry the specificity until the owner's portrait lands */
 /* Hallmark · hero-review: in-thread · 1 finding · 1 resolved (head grown to fill the width) · finish-review: in-thread · 2 findings · 2 resolved (row hairlines back on the grid, spaces between heading lines) · gap: no photographs yet */
@@ -21,7 +21,7 @@ h1, h2 { font-optical-sizing: auto; }
 .on-field ::selection, .on-navy ::selection { background: var(--color-butter); color: var(--color-on-butter); }
 
 /* floating pill */
-.bar { position: fixed; z-index: var(--z-sticky-nav); inset-inline: 0; top: calc(env(safe-area-inset-top, 0px) + var(--space-md)); display: flex; justify-content: flex-start; padding-inline: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter))); pointer-events: none; }
+.bar { position: fixed; z-index: var(--z-sticky-nav); inset-inline: 0; top: calc(env(safe-area-inset-top, 0px) + var(--space-md)); display: flex; justify-content: center; padding-inline: var(--space-md); pointer-events: none; }
 .pill { pointer-events: auto; display: flex; align-items: center; gap: var(--space-xl); min-height: 64px; padding: var(--space-xs) var(--space-lg) var(--space-xs) var(--space-xl); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: var(--color-paper-2); color: var(--color-ink); }
 .logo { display: inline-grid; justify-items: center; font-family: var(--font-body); font-size: var(--text-lg); line-height: 1; text-decoration: none; white-space: nowrap; color: var(--color-accent); }
 .logo small { font-size: var(--text-sm); line-height: 1.1; color: var(--color-ink-2); }
@@ -37,7 +37,7 @@ h1, h2 { font-optical-sizing: auto; }
 /* hero: ledge */
 .hero { position: relative; overflow: clip; display: flex; flex-direction: column; justify-content: flex-end; min-height: 100dvh; padding-block: var(--space-4xl) calc(env(safe-area-inset-bottom, 0px) + var(--space-xl)); }
 .hero .container { position: relative; z-index: var(--z-raised); }
-.court-diagram { position: absolute; z-index: var(--z-base); top: 0; right: calc((100% - min(100%, var(--container))) / 2 - var(--space-xl)); width: min(47vw, 680px); height: auto; pointer-events: none; }
+.court-diagram { position: absolute; z-index: var(--z-base); top: var(--space-3xl); right: calc((100% - min(100%, var(--container))) / 2 - var(--space-xl)); width: min(42vw, 600px); height: auto; pointer-events: none; }
 .court-diagram * { fill: none; stroke: var(--color-on-field); stroke-width: 2; stroke-linecap: round; }
 .court-diagram .court-key { fill: var(--color-butter); stroke: var(--color-butter); }
 .court-diagram .court-in { stroke: var(--color-court-in); }
