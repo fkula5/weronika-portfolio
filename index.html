@@ -13,7 +13,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Przejdź do treści</a>
-<header class="bar">
+<header class="bar" data-bar>
   <div class="pill" data-pill>
     <a class="logo" href="#top" aria-label="Weronika Pasierb, content creator, początek strony">Weronika Pasierb<small>content creator</small></a>
     <button class="menu" type="button" aria-expanded="false" aria-controls="nav" data-menu>Menu</button>
@@ -59,7 +59,7 @@
     <div class="about__text">
       <h2>O mnie</h2>
       <p>Studiuję marketing i nowe media (specjalizacja: social media w biznesie) i od lat żyję koszykówką, także jako sędzia na parkiecie. To połączenie daje mi wyjątkowe spojrzenie na sport, content i społeczność.</p>
-      <p>Pracuję w Ideoforce, jestem social media managerką i redaktorką w Intro Media, współtworzę komunikację Podkarpackiego Wydziału Sędziowskiego i prowadzę koło naukowe KN Nowe Media.</p>
+      <p>Pracuję w agencji marketingowej Ideoforce jako specjalista ds.&nbsp;marketingu internetowego, jestem social media managerką i redaktorką w Intro Media, współtworzę komunikację Podkarpackiego Wydziału Sędziowskiego i prowadzę koło naukowe KN Nowe Media.</p>
       <ul class="skills"><li>Reels</li><li>Social media</li><li>Copywriting</li><li>Canva</li><li>CapCut</li><li>Meta Business Suite</li></ul>
     </div>
   </div>
@@ -137,6 +137,21 @@ const setOpen = (open) => { pill.classList.toggle('is-open', open); menu.setAttr
 menu.addEventListener('click', () => setOpen(!pill.classList.contains('is-open')));
 pill.querySelectorAll('nav a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); } });
+const bar = document.querySelector('[data-bar]');
+let lastY = window.scrollY, ticking = false;
+window.addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY, down = y > lastY + 4, up = y < lastY - 4;
+    const keep = pill.classList.contains('is-open') || pill.matches(':focus-within');
+    if (down && y > 160 && !keep) bar.classList.add('is-hidden');
+    else if (up || y <= 160) bar.classList.remove('is-hidden');
+    if (down || up) lastY = y;
+    ticking = false;
+  });
+}, { passive: true });
+pill.addEventListener('focusin', () => bar.classList.remove('is-hidden'));
 </script>
 </body>
 </html>
